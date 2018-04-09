@@ -277,18 +277,13 @@ public class GridViewGame extends GridLayout {
             new AlertDialog.Builder(getContext()).setTitle("你好")
                     .setMessage("游戏结束,您的最终得分是: "+MainActivity.getMainActivity().score)
 
-                    .setPositiveButton("重来", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("不服重来", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             startGame();
                         }
                     })
-                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    }).show();
+                    .show();
         }
 
     }
