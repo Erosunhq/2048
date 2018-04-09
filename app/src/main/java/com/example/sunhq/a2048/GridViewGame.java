@@ -294,7 +294,8 @@ public class GridViewGame extends GridLayout {
                 }
         }
         if (complete){
-            new AlertDialog.Builder(getContext()).setTitle("你好")
+            new AlertDialog.Builder(getContext()).setTitle("您好")
+                    .setIcon(R.mipmap.icon)
                     .setMessage("游戏结束,您的最终得分是: "+MainActivity.getMainActivity().score)
 
                     .setPositiveButton("不服重来", new DialogInterface.OnClickListener() {
