@@ -36,7 +36,8 @@ public class GridViewGame extends GridLayout {
 
     protected void initGameView(){
         setColumnCount(4); //指明4列
-        setBackgroundColor(0xffbbdd00);
+        //setBackgroundColor(0xffADFF2F);  // 主窗口的背景
+        setBackground(getResources().getDrawable(R.mipmap.background));
         // 从用户手势滑动方向判断用户的意图
         setOnTouchListener(new OnTouchListener() {
 
@@ -129,7 +130,7 @@ public class GridViewGame extends GridLayout {
         if(emptyPoints!=null && emptyPoints.size()>0){
             p = emptyPoints.remove((int)(Math.random() * emptyPoints.size()));
         }
-        cardMap[p.x][p.y].setNum(Math.random() > 0.1 ? 2 : 4);
+        cardMap[p.x][p.y].setNum(Math.random() > 0.1 ? 2 : 4); // 按1:9的比例随机添加2和4
     }
 
     //方法类
@@ -292,6 +293,6 @@ public class GridViewGame extends GridLayout {
 
     }
 
-    private Card[][] cardMap  = new Card[4][4];
+    public Card[][] cardMap  = new Card[4][4];
     private List<Point> emptyPoints = new ArrayList<Point>();
 }

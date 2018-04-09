@@ -14,7 +14,8 @@ public class Card extends FrameLayout {
 
         label = new TextView(getContext());
         label.setTextSize(32);
-        label.setBackgroundColor(0x33ffffff);
+        label.setTextColor(0xff00CCFF); //数字的背景
+        label.setBackgroundColor(0x3366CCFF);  //文字的背景
         label.setGravity(Gravity.CENTER);
         LayoutParams layoutParams = new LayoutParams(-1,-1);
         layoutParams.setMargins(10,10,0,0);
@@ -36,11 +37,14 @@ public class Card extends FrameLayout {
         } else {
             label.setText(num + "");
         }
+
     }
 
     public boolean equals(Card o) {
         return getNum() == o.getNum(); //判断数字是否相等
     }
 
-    private TextView label;
+    public TextView label;
+
+
 }
