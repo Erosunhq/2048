@@ -16,9 +16,10 @@ public class Card extends FrameLayout {
         label.setTextSize(32);
         label.setTextColor(0xff00CCFF); //数字的背景
         label.setBackgroundColor(0x3366CCFF);  //文字的背景
+
         label.setGravity(Gravity.CENTER);
         LayoutParams layoutParams = new LayoutParams(-1,-1);
-        layoutParams.setMargins(10,10,0,0);
+        layoutParams.setMargins(20,20,0,0);
         addView(label,layoutParams);
 
         setNum(0);

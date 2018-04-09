@@ -15,6 +15,7 @@ import java.util.List;
  * Created by Sunhq on 2018/4/9.
  */
 public class GridViewGame extends GridLayout {
+    boolean merge = false;
 
 
 
@@ -37,7 +38,7 @@ public class GridViewGame extends GridLayout {
     protected void initGameView(){
         setColumnCount(4); //指明4列
         //setBackgroundColor(0xffADFF2F);  // 主窗口的背景
-        setBackground(getResources().getDrawable(R.mipmap.background));
+        //setBackground(getResources().getDrawable(R.mipmap.background));
         // 从用户手势滑动方向判断用户的意图
         setOnTouchListener(new OnTouchListener() {
 
@@ -105,7 +106,7 @@ public class GridViewGame extends GridLayout {
         }
     }
 
-    private void startGame(){
+    public void startGame(){
         MainActivity.getMainActivity().clearScore(); //开始的时候清零
         for (int y = 0; y < 4;y++){
             for (int x = 0;x <4;x++){
@@ -145,7 +146,6 @@ public class GridViewGame extends GridLayout {
                         if (cardMap[x][y].getNum() <= 0){ //为空
                             cardMap[x][y].setNum(cardMap[x1][y].getNum());
                             cardMap[x1][y].setNum(0);
-
                             x--; //
                             merge = true;
                         }else if (cardMap[x][y].equals(cardMap[x1][y])){ //不为空,并且两张卡片的值是相同的
@@ -164,6 +164,9 @@ public class GridViewGame extends GridLayout {
             }
         }
     }
+
+
+
     private void swipeRight(){
         boolean merge = false;
         for (int y = 0; y < 4;y++){
@@ -226,7 +229,7 @@ public class GridViewGame extends GridLayout {
 
     }
     private void swipeDown(){
-        boolean merge = false;
+
         for (int x = 0; x < 4;x++){
             for (int y = 3;y >= 0;y--){
 
@@ -256,6 +259,23 @@ public class GridViewGame extends GridLayout {
         }
 
     }
+/*
+    //滑动动画, 音效等
+    private void invokeAnimate() {
+        if (merge) {
+            new WaveThread("merge.wav").start();
+            moveAnimate();
+            mergeAnimate();
+        } else if (isMove) {
+            new WaveThread("move.wav").start();
+            moveAnimate();
+        }
+        if (isMerge || isMove) {
+            createTile();
+            isMerge = false;
+            isMove = false;
+        }
+    }*/
 
     // 判断游戏结束
     private void checkComplete(){
@@ -267,7 +287,7 @@ public class GridViewGame extends GridLayout {
                         (x > 0 && cardMap[x][y].equals(cardMap[x - 1][y])) ||
                         (x < 3 && cardMap[x][y].equals(cardMap[x + 1][y])) ||
                         (y > 0 && cardMap[x][y].equals(cardMap[x][y - 1])) ||
-                        (y < 3 && cardMap[x][y].equals(cardMap[x][y + 1]))) { //四个方向上没有相同数字
+                        (y < 3 && cardMap[x][y].equals(cardMap[x][y + 1]))) { //四个方向上有相同数字
                     complete = false;
                     break ALL;  //为了能跳出内层循环和外层循环
 
@@ -281,6 +301,7 @@ public class GridViewGame extends GridLayout {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             startGame();
+                            MainActivity.getMainActivity().showScore(); //清零后显示
                         }
                     })
                     .show();
